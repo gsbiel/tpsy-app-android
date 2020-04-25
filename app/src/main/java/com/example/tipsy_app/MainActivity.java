@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
     private TextView stepperLabel;
 
     private int stepperValue = 0;
-
     private int currentTip = 0;
 
     private Button currentTipBtn;
@@ -75,6 +74,11 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         this.stepperLabel.setText("" + this.stepperValue);
     }
 
+    private double calculateTip(int numberOfPersons, int tipPercentage, double totalAmount){
+        double amountPerPerson = (totalAmount * (1 + (double) tipPercentage/100.0)) / (double) numberOfPersons;
+        return amountPerPerson;
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -104,6 +108,16 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
                 }
                 break;
             case R.id.calculateBtn:
+                String textFieldText = this.textField.getText().toString();
+                double value;
+                try{
+                    value = Double.parseDouble(textFieldText);
+                }catch(NumberFormatException error){
+                    value = 0;
+                }
+                System.out.println(value);
+                double calculatedTip = this.calculateTip(this.stepperValue, this.currentTip, value);
+                System.out.println(calculatedTip);
                 break;
         }
     }
