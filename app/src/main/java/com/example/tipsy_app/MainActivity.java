@@ -2,6 +2,7 @@ package com.example.tipsy_app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements Button.OnClickListener {
+
+    public static String resultId = "com.tipsy_app.resultId";
+    public static String tipValueId = "com.tipsy_app.tipValueId";
+    public static String stepperValueId = "com.tipsy_app.stepperValueId";
 
     private Button zeroTipBtn;
     private Button tenTipBtn;
@@ -82,31 +87,37 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+
             case R.id.zeroTip:
                 this.currentTip = 0;
                 this.currentTipBtn = this.zeroTipBtn;
                 this.updateUI();
                 break;
+
             case R.id.tenTip:
                 this.currentTip = 10;
                 this.currentTipBtn = this.tenTipBtn;
                 this.updateUI();
                 break;
+
             case R.id.twentyTip:
                 this.currentTip = 20;
                 this.currentTipBtn = this.twentyTipBtn;
                 this.updateUI();
                 break;
+
             case R.id.stepper_plus_button:
                 this.stepperValue += 1;
                 this.updateUI();
                 break;
+
             case R.id.stepper_less_button:
                 if(this.stepperValue > 0){
                     this.stepperValue -= 1;
                     this.updateUI();
                 }
                 break;
+
             case R.id.calculateBtn:
                 String textFieldText = this.textField.getText().toString();
                 double value;
@@ -115,9 +126,13 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
                 }catch(NumberFormatException error){
                     value = 0;
                 }
-                System.out.println(value);
                 double calculatedTip = this.calculateTip(this.stepperValue, this.currentTip, value);
-                System.out.println(calculatedTip);
+                // Go to next activity
+                Intent intent = new Intent(this, ResultActivity.class);
+                intent.putExtra(MainActivity.resultId,calculatedTip);
+                intent.putExtra(MainActivity.stepperValueId,this.stepperValue);
+                intent.putExtra(MainActivity.tipValueId,this.currentTip);
+                startActivity(intent);
                 break;
         }
     }
