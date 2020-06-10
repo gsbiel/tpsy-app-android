@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#E2FBF3">
+
+        <TextView
+            android:id="@+id/editTextTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Enter bill total"
+            android:textSize="18sp"
+            android:background="#FFFFFF"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/textField"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:hint="E.g 129.99"
+            android:inputType="phone"
+            android:textColor="#B3B4B4"
+            android:textSize="22sp"
+            android:background="#FFFFFF"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTitle"
+            app:layout_constraintBottom_toTopOf="@+id/horizontalLine1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tipButtonsSection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select tip"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/horizontalLine1"
+            app:layout_constraintBottom_toTopOf="@id/zeroTip"
+            app:layout_constraintStart_toEndOf="@id/verticalLine1" />
+
+        <Button
+            android:id="@+id/zeroTip"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:background="#E2FBF3"
+            android:text="0%"
+            android:textColor="#81BDA9"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/tipButtonsSection"
+            app:layout_constraintStart_toEndOf="@id/verticalLine1"
+            app:layout_constraintEnd_toStartOf="@id/tenTip" />
+
+        <Button
+            android:id="@+id/tenTip"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:background="#E2FBF3"
+            android:text="10%"
+            android:textColor="#81BDA9"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/tipButtonsSection"
+            app:layout_constraintStart_toEndOf="@id/zeroTip"
+            app:layout_constraintEnd_toStartOf="@id/twentyTip" />
+
+        <Button
+            android:id="@+id/twentyTip"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:background="#E2FBF3"
+            android:text="20%"
+            android:textColor="#81BDA9"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/tipButtonsSection"
+            app:layout_constraintStart_toEndOf="@id/tenTip"
+            app:layout_constraintEnd_toStartOf="@id/verticalLine2" />
+
+        <TextView
+            android:id="@+id/stepperSection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choose split"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/zeroTip"
+            app:layout_constraintBottom_toTopOf="@id/stepper"
+            app:layout_constraintStart_toEndOf="@id/verticalLine1" />
+
+        <com.example.tipsy_app.views.Stepper
+            android:id="@+id/stepper"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.32"
+            app:layout_constraintTop_toBottomOf="@id/stepperSection"
+            app:layout_constraintBottom_toTopOf="@id/calculateBtn"
+            app:layout_constraintStart_toEndOf="@id/verticalLine1"
+            app:layout_constraintEnd_toStartOf="@id/verticalLine2" />
+
+        <Button
+            android:id="@+id/calculateBtn"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.1"
+            android:background="@drawable/button_shape"
+            android:text="calculate"
+            android:textColor="#fff"
+            app:layout_constraintTop_toBottomOf="@id/stepper"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/verticalLine1"
+            app:layout_constraintEnd_toStartOf="@id/verticalLine2" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/verticalLine1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/verticalLine2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/horizontalLine1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.41" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
