@@ -8,6 +8,7 @@
 
     <fragment
         android:id="@+id/tipsyFragment"
+        android:name="com.example.tipsy_app.tipsy.TipsyFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout="@layout/fragment_tipsy"
