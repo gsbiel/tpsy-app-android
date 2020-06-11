@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.example.tipsy_app.result.ResultViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -63,6 +65,7 @@
                 android:text="Recalculate"
                 android:textColor="#fff"
                 android:textSize="20sp"
+                android:onClick="@{() -> viewModel.recalculateBtnPressed()}"
                 app:layout_constraintTop_toBottomOf="@id/horizontalLine2"
                 app:layout_constraintBottom_toTopOf="@id/horizontalLine3"
                 app:layout_constraintStart_toEndOf="@id/verticalLine1"

@@ -3,6 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.tipsy_app.tipsy.TipsyViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -108,6 +114,7 @@
             android:background="@drawable/button_shape"
             android:text="calculate"
             android:textColor="#fff"
+            android:onClick="@{() -> viewModel.calculateBtnPressed()}"
             app:layout_constraintBottom_toBottomOf="@id/horizontalLine2"
             app:layout_constraintEnd_toStartOf="@id/verticalLine2"
             app:layout_constraintStart_toEndOf="@id/verticalLine1"
