@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/tipsyFragment2">
+
+    <fragment
+        android:id="@+id/tipsyFragment2"
+        android:name="com.example.tipsy_app.tipsy.TipsyFragment"
+        android:label="TipsyFragment"
+        tools:layout="@layout/fragment_tipsy">
+        <action
+            android:id="@+id/action_tipsyFragment2_to_resultFragment"
+            app:destination="@id/resultFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="com.example.tipsy_app.result.ResultFragment"
+        android:label="ResultFragment"
+        tools:layout="@layout/fragment_result">
+        <action
+            android:id="@+id/action_resultFragment_to_tipsyFragment2"
+            app:destination="@id/tipsyFragment2"
+            app:popUpTo="@id/tipsyFragment2"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>
