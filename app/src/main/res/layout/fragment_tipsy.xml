@@ -59,6 +59,8 @@
             android:text="0%"
             android:textColor="#81BDA9"
             android:textSize="18sp"
+            android:onClick="@{() -> viewModel.tipBtnPressed(viewModel.firstTip)}"
+            app:firstTip="@{viewModel.firstTipState}"
             app:layout_constraintEnd_toStartOf="@id/tenTip"
             app:layout_constraintStart_toEndOf="@id/verticalLine1"
             app:layout_constraintTop_toBottomOf="@id/tipButtonsSection" />
@@ -71,6 +73,8 @@
             android:text="10%"
             android:textColor="#81BDA9"
             android:textSize="18sp"
+            android:onClick="@{() -> viewModel.tipBtnPressed(viewModel.secondTip)}"
+            app:secondTip="@{viewModel.secondTipState}"
             app:layout_constraintEnd_toStartOf="@id/twentyTip"
             app:layout_constraintStart_toEndOf="@id/zeroTip"
             app:layout_constraintTop_toBottomOf="@id/tipButtonsSection" />
@@ -83,6 +87,8 @@
             android:text="20%"
             android:textColor="#81BDA9"
             android:textSize="18sp"
+            android:onClick="@{() -> viewModel.tipBtnPressed(viewModel.thirdTip)}"
+            app:thirdTip="@{viewModel.thirdTipState}"
             app:layout_constraintEnd_toStartOf="@id/verticalLine2"
             app:layout_constraintStart_toEndOf="@id/tenTip"
             app:layout_constraintTop_toBottomOf="@id/tipButtonsSection" />
