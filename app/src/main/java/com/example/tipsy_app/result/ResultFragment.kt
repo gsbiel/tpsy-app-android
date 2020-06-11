@@ -16,12 +16,16 @@ class ResultFragment: Fragment() {
 
     private lateinit var binding: FragmentResultBinding
     private lateinit var viewModel: ResultViewModel
+    private lateinit var viewModelFactory: ResultViewModelFactory
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding =  DataBindingUtil.inflate(inflater, R.layout.fragment_result, container, false)
         binding.lifecycleOwner = this
 
-        viewModel = ViewModelProviders.of(this).get(ResultViewModel::class.java)
+        val argsData = ResultFragmentArgs.fromBundle(requireArguments()).tipsyData
+        viewModelFactory = ResultViewModelFactory(argsData)
+
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(ResultViewModel::class.java)
         binding.viewModel = viewModel
 
         registerObservers()

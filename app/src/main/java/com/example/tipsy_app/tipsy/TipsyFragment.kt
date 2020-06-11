@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.example.tipsy_app.R
 import com.example.tipsy_app.databinding.FragmentTipsyBinding
+import com.example.tipsy_app.result.ResultFragmentArgs
 
 class TipsyFragment: Fragment(){
 
@@ -32,7 +33,7 @@ class TipsyFragment: Fragment(){
     private fun registerObservers(){
         viewModel.navigateToResult.observe(viewLifecycleOwner, Observer {
             it?.let{
-                val action = TipsyFragmentDirections.actionTipsyFragment2ToResultFragment()
+                val action = TipsyFragmentDirections.actionTipsyFragment2ToResultFragment(it)
                 this.findNavController()?.navigate(action)
                 viewModel.navigateDone()
             }

@@ -10,7 +10,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class TipsyData(val result: Double, val numberOfPersons: Int, val tip: String): Parcelable
 
-class TipsyViewModel: ViewModel(){
+class TipsyViewModel(): ViewModel(){
 
     val firstTip: Int = 0
     val secondTip: Int = 10
