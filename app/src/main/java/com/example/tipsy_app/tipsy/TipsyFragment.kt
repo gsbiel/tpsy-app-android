@@ -31,7 +31,7 @@ class TipsyFragment: Fragment(){
 
     private fun registerObservers(){
         viewModel.navigateToResult.observe(viewLifecycleOwner, Observer {
-            if(it){
+            it?.let{
                 val action = TipsyFragmentDirections.actionTipsyFragment2ToResultFragment()
                 this.findNavController()?.navigate(action)
                 viewModel.navigateDone()

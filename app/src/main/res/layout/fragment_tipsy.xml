@@ -36,6 +36,7 @@
             android:inputType="phone"
             android:textColor="#B3B4B4"
             android:textSize="22sp"
+            android:text="@={viewModel.totalValue}"
             app:layout_constraintBottom_toTopOf="@+id/horizontalLine1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

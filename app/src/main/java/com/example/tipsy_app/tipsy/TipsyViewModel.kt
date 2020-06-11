@@ -1,10 +1,14 @@
 package com.example.tipsy_app.tipsy
 
+import android.os.Parcelable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.selects.select
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+data class TipsyData(val result: Double, val numberOfPersons: Int, val tip: String): Parcelable
 
 class TipsyViewModel: ViewModel(){
 
@@ -18,6 +22,11 @@ class TipsyViewModel: ViewModel(){
     val stepperString = Transformations.map(_currentSteper){
         it.toString()
     }
+
+    // EditText related properties
+    // This mutable property is exposed because i am using two way databinding with
+    // fragment_tipsy layout file
+    val totalValue = MutableLiveData<String>()
 
     // ---------------------------------------------------------------------------------------------
     // Tip buttons related properties
@@ -35,15 +44,16 @@ class TipsyViewModel: ViewModel(){
 
     // ---------------------------------------------------------------------------------------------
     // Navigation related properties
-    private val _navigateToResult = MutableLiveData<Boolean>()
-    val navigateToResult: LiveData<Boolean>
+    private val _navigateToResult = MutableLiveData<TipsyData>()
+    val navigateToResult: LiveData<TipsyData>
         get() = _navigateToResult
 
     // ---------------------------------------------------------------------------------------------
     // Class entry point
     init {
-        _navigateToResult.value = false
+        _navigateToResult.value = null
         _currentSteper.value = 0
+        totalValue.value = ""
         selectTip(firstTip)
     }
 
@@ -80,10 +90,31 @@ class TipsyViewModel: ViewModel(){
     }
 
     fun calculateBtnPressed(){
-        _navigateToResult.value = true
+        val amount = totalValue.value?.toDoubleOrNull()
+        val currentTip = getActiveTip()
+        amount?.let{
+            val result = calculateTipFor(it,_currentSteper.value!!,currentTip)
+            val data = TipsyData(result,_currentSteper.value!!, "${currentTip}%")
+            _navigateToResult.value = data
+        }
     }
 
     fun navigateDone(){
-        _navigateToResult.value = false
+        _navigateToResult.value = null
+    }
+
+    private fun calculateTipFor(totalAmount: Double, numberOfPersons: Int, tip: Int): Double{
+        val result: Double = ((1 + tip/100.0)*totalAmount)/numberOfPersons.toDouble()
+        return result
+    }
+
+    private fun getActiveTip(): Int{
+        if(firstTipState.value!!){
+            return firstTip
+        }else if(secondTipState.value!!){
+            return secondTip
+        }else{
+            return thirdTip
+        }
     }
 }
