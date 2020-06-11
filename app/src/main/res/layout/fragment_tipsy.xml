@@ -97,15 +97,18 @@
             app:layout_constraintStart_toEndOf="@id/verticalLine1"
             app:layout_constraintTop_toBottomOf="@id/zeroTip" />
 
-        <com.example.tipsy_app.views.Stepper
+        <include
             android:id="@+id/stepper"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            app:viewModel="@{viewModel}"
             app:layout_constraintBottom_toTopOf="@id/calculateBtn"
             app:layout_constraintEnd_toStartOf="@id/verticalLine2"
             app:layout_constraintHeight_percent="0.32"
             app:layout_constraintStart_toEndOf="@id/verticalLine1"
-            app:layout_constraintTop_toBottomOf="@id/stepperSection" />
+            app:layout_constraintTop_toBottomOf="@id/stepperSection"
+            layout="@layout/stepper"
+            />
 
         <Button
             android:id="@+id/calculateBtn"

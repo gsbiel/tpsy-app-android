@@ -1,35 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:orientation="horizontal"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-        <TextView
-            android:id="@+id/stepper_label"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="0"
-            android:gravity="center"
-            android:textSize="20sp"
-            />
+        <data>
+                <variable
+                    name="viewModel"
+                    type="com.example.tipsy_app.tipsy.TipsyViewModel"/>
+        </data>
 
-        <Button
-            android:id="@+id/stepper_plus_button"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="+"
-            android:textSize="20sp"
-            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/stepper_less_button"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="-"
-            android:textSize="20sp"
-            />
-</LinearLayout>
+                <TextView
+                    android:id="@+id/stepper_label"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="@{viewModel.stepperString}"
+                    android:gravity="center"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/stepper_plus_button"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="+"
+                    android:textSize="20sp"
+                    android:onClick="@{() -> viewModel.increaseStepper()}"
+                    />
+
+                <Button
+                    android:id="@+id/stepper_less_button"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="-"
+                    android:textSize="20sp"
+                    android:onClick="@{() -> viewModel.decreaseStepper()}"
+                    />
+        </LinearLayout>
+</layout>
